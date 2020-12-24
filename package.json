@@ -1,32 +1,30 @@
 {
-  "name": "@olton/datetime",
-  "title": "DatetimeJS",
-  "description": "Datetime.js is a minimalist JavaScript library that parses, validates, manipulates, and displays dates and times for modern browsers with comfortable modern API.",
+  "name": "@olton/cake",
+  "title": "Cake",
+  "description": "Cake is a minimalist JavaScript library that parses, validates, manipulates, and displays strings for modern browsers with comfortable modern API.",
   "version": "1.0.0",
-  "main": "lib/datetime.js",
-  "homepage": "https://github.com/olton/DatetimeJS",
+  "main": "lib/cake.js",
+  "homepage": "https://github.com/olton/cake",
   "author": {
     "name": "Serhii Pimenov",
     "url": "https://pimenov.com.ua"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/olton/DatetimeJS.git"
+    "url": "https://github.com/olton/cake.git"
   },
   "keywords": [
-    "date",
-    "time",
-    "datetime",
+    "string",
     "javascript",
     "library"
   ],
   "bugs": {
-    "url": "https://github.com/olton/DatetimeJS/issues"
+    "url": "https://github.com/olton/cake/issues"
   },
   "license": "MIT",
   "scripts": {
     "build": "npm install && grunt",
-    "test": "nyc mocha tests/**/*.js && nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc mocha && nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
     "chai": "^4.2.0",

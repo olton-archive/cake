@@ -6,8 +6,14 @@
         return new Cake(s);
     }
 
-    var Cake = function(v){
-        this.value = ""+v;
+    var Cake = function(s){
+        this.value = ""+s;
+    }
+
+    Cake.prototype = {
+        toString: function(){
+            return this.value;
+        }
     }
 
     global.Cake = Cake;
