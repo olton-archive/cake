@@ -1,0 +1,52 @@
+{
+  "name": "@olton/datetime",
+  "title": "DatetimeJS",
+  "description": "Datetime.js is a minimalist JavaScript library that parses, validates, manipulates, and displays dates and times for modern browsers with comfortable modern API.",
+  "version": "1.0.0",
+  "main": "lib/datetime.js",
+  "homepage": "https://github.com/olton/DatetimeJS",
+  "author": {
+    "name": "Serhii Pimenov",
+    "url": "https://pimenov.com.ua"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olton/DatetimeJS.git"
+  },
+  "keywords": [
+    "date",
+    "time",
+    "datetime",
+    "javascript",
+    "library"
+  ],
+  "bugs": {
+    "url": "https://github.com/olton/DatetimeJS/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "npm install && grunt",
+    "test": "nyc mocha tests/**/*.js && nyc report --reporter=text-lcov | coveralls"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "coveralls": "^3.1.0",
+    "eslint": "^7.0.0",
+    "grunt": "^1.0.4",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-eslint": "^22.0.0",
+    "grunt-remove-comments": "^0.1.6",
+    "grunt-remove-logging": "^0.2.0",
+    "grunt-replace": "^1.0.1",
+    "load-grunt-tasks": "^5.0.0",
+    "mocha": "^8.2.1",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^15.1.0",
+    "sinon": "^9.2.1"
+  },
+  "dependencies": {}
+}
