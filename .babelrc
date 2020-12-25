@@ -1,0 +1,13 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "browsers": "last 1 Chrome versions"
+                },
+                "modules": "commonjs"
+            }
+        ]
+    ]
+}
