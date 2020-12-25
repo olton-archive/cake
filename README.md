@@ -6,10 +6,7 @@
 
 <p align="center">
 
-[![Coverage Status](https://coveralls.io/repos/github/olton/cake/badge.svg?branch=master)](https://coveralls.io/github/olton/cake?branch=master)
 ![Dependencies](https://img.shields.io/badge/Dependencies-none-darklime.svg)
-[![Core size](http://img.badgesize.io/olton/cake/master/lib/datetime.min.js?compression=gzip&label=Core+gzip)](https://github.com/olton/cake/blob/master/lib/datetime.min.js)
-[![Full size](http://img.badgesize.io/olton/cake/master/lib/datetime.all.min.js?compression=gzip&label=Full+gzip)](https://github.com/olton/cake/blob/master/lib/datetime.all.min.js)
 ![GitHub release](https://img.shields.io/github/v/release/olton/cake?color=darkLime)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)
 ![GitHub issues](https://img.shields.io/github/issues-raw/olton/cake.svg?color=red)
