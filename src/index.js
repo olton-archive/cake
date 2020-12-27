@@ -5,6 +5,18 @@ class Cake {
         this._value = ""+s
     }
 
+    [Symbol.toPrimitive](hint){
+        if (hint === "number") {
+            return +this.value
+        }
+
+        return this.value
+    }
+
+    get [Symbol.toStringTag](){
+        return "Cake";
+    }
+
     get value(){
         return this._value;
     }
@@ -14,10 +26,6 @@ class Cake {
     }
 
     toString(){
-        return this._value;
-    }
-
-    valueOf(){
         return this._value;
     }
 }
