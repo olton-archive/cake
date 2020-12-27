@@ -1,7 +1,7 @@
-(function() {
-    Cake.use({
-        fn(){
-            return this;
-        }
-    });
-}());
+import {use} from "../index";
+
+use({
+    fn(){
+        return this
+    }
+});

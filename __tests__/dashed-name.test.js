@@ -1,5 +1,5 @@
-require("../../src/index");
-require("../../src/plugins/dashed-name");
+const {cake} = require("../src/index");
+require("../src/plugins/dashed-name");
 
 test("Dashed name test", () => {
     let s = cake("dashedName");

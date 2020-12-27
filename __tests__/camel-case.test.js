@@ -1,5 +1,5 @@
-require("../../src/index");
-require("../../src/plugins/camel-case");
+const {cake} = require("../src/index");
+require("../src/plugins/camel-case");
 
 test("camel case test", () => {
     let s = cake("camel-case");

@@ -1,17 +1,17 @@
-(function() {
-    Cake.use({
-        toArray(sep = "", map, flt){
-            let result = this.value.split(sep);
+import {use} from "../index"
 
-            if (typeof map === "function") {
-                result = result.map(map);
-            }
+use({
+    toArray(sep = "", map, flt){
+        let result = this.value.split(sep)
 
-            if (typeof flt === "function") {
-                result = result.filter(flt);
-            }
-
-            return result;
+        if (typeof map === "function") {
+            result = result.map(map)
         }
-    });
-}());
+
+        if (typeof flt === "function") {
+            result = result.filter(flt)
+        }
+
+        return result
+    }
+});

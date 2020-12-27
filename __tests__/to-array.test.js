@@ -1,5 +1,5 @@
-require("../../src/index");
-require("../../src/plugins/to-array");
+const {cake} = require("../src/index");
+require("../src/plugins/to-array");
 
 test("toArray default test", () => {
     let s = cake("camel case");

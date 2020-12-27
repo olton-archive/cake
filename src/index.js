@@ -1,21 +1,39 @@
-(function(global) {
-    const cake = function(s){
-        return new Cake(s);
+class Cake {
+    #value;
+
+    constructor(s) {
+        this.#value = ""+s
     }
 
-    const Cake = function (s){
-        this.value = ""+s;
+    get value(){
+        return this.#value;
     }
 
-    Cake.use = function(...mixins){
-        return Object.assign(Cake.prototype, ...mixins);
+    set value(s){
+        this.#value = ""+s;
     }
 
-    Cake.prototype.toString = function(){
-        return this.value;
+    toString(){
+        return this.#value;
     }
 
-    global.Cake = Cake;
-    global.cake = cake;
-}(window || global || self));
+    valueOf(){
+        return this.#value;
+    }
+}
 
+const use = function(...mixins){
+    return Object.assign(Cake.prototype, ...mixins)
+}
+
+const cake = function(s){
+    return new Cake(s)
+}
+
+window.cake = cake;
+
+export default Cake;
+export {
+    cake,
+    use
+}
