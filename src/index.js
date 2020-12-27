@@ -1,24 +1,24 @@
 class Cake {
-    #value;
+    _value;
 
-    constructor(s) {
-        this.#value = ""+s
+    constructor(s = "") {
+        this._value = ""+s
     }
 
     get value(){
-        return this.#value;
+        return this._value;
     }
 
     set value(s){
-        this.#value = ""+s;
+        this._value = ""+s;
     }
 
     toString(){
-        return this.#value;
+        return this._value;
     }
 
     valueOf(){
-        return this.#value;
+        return this._value;
     }
 }
 

@@ -1,7 +1,7 @@
-import {use} from "../index";
+import {use} from "../index"
 
 use({
     chars(){
-        return this.value.split("");
+        return this.value.split("")
     }
 });

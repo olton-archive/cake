@@ -7,8 +7,23 @@ test("Split to words test", () => {
 });
 
 test("Split to words test", () => {
+    let s = cake("行 く 行 く");
+    expect(s.words()).toEqual(["行", "く", "行", "く"]);
+});
+
+test("Split to words test", () => {
     let s = cake("camel case");
     expect(s.words(/[^\s]+/g)).toEqual(["camel", "case"]);
+});
+
+test("Split to words test", () => {
+    let s = cake("camel case");
+    expect(s.words('[^\\s]+', 'g')).toEqual(["camel", "case"]);
+});
+
+test("Split to words test", () => {
+    let s = cake("камел кайс");
+    expect(s.words('[^\\s]+', 'g')).toEqual(["камел", "кайс"]);
 });
 
 test("Split to words test", () => {

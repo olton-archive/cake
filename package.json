@@ -25,7 +25,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --collect-coverage",
     "prepublishOnly": "npm run build",
     "build-lib": "cross-env BABEL_ENV=browser babel ./src --out-dir ./lib --copy-files",
     "build": "npm run build-lib",
