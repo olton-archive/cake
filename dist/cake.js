@@ -104,13 +104,6 @@
       }).join("");
     }
 
-    function chars(s) {
-      var ignore = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-      return ("" + s).split("").filter(function (el) {
-        return !ignore.includes(el);
-      });
-    }
-
     function dashedName(s) {
       return words("" + s).map(function (el) {
         return el.toLowerCase();
@@ -122,21 +115,18 @@
     }
 
     function kebab(s) {
-      return words("" + s).map(function (el) {
+      return words(s).map(function (el) {
         return el.toLowerCase();
       }).join("-");
     }
 
     function lower(s) {
-      ("" + s).toLowerCase();
+      return s.toLowerCase();
     }
 
     function shuffle(s) {
-      var _s = "" + s;
-
-      var a = _s.split("");
-
-      var i = -s,
+      var a = s.split("");
+      var i = s.length,
           t,
           r;
 
@@ -152,7 +142,7 @@
     }
 
     function snake(s) {
-      return words("" + s).map(function (el) {
+      return words(s).map(function (el) {
         return el.toLowerCase();
       }).join("_");
     }
@@ -170,13 +160,11 @@
     }
 
     function title(s, noSplit) {
-      var _s = "" + s;
-
-      var regexp = REGEXP_EXTENDED_ASCII.test(_s) ? REGEXP_LATIN_WORD : REGEXP_WORD;
-      var noSplitArray = Array.isArray(noSplit) ? noSplit : !isNull(noSplit) ? noSplit.split() : [];
-      return _s.replace(regexp, function (w, i) {
-        var isNoSplit = i && noSplitArray.includes(_s[i - 1]);
-        return isNoSplit ? lower(s) : capitalize(s);
+      var regexp = REGEXP_EXTENDED_ASCII.test(s) ? REGEXP_LATIN_WORD : REGEXP_WORD;
+      var noSplitArray = Array.isArray(noSplit) ? noSplit : isNull(noSplit) ? [] : noSplit.split();
+      return s.replace(regexp, function (w, i) {
+        var isNoSplit = i && noSplitArray.includes(s[i - 1]);
+        return isNoSplit ? lower(w) : capitalize(w);
       });
     }
 
@@ -186,13 +174,20 @@
 
     function wrapTag(s) {
       var tag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "div";
-      return "<".concat(tag, ">").concat(this.value, "</").concat(tag, ">");
+      return "<".concat(tag, ">").concat(s, "</").concat(tag, ">");
     }
 
     function wrap(s) {
       var before = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
       var after = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
       return before + s + after;
+    }
+
+    function chars(s) {
+      var ignore = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+      return ("" + s).split("").filter(function (el) {
+        return !ignore.includes(el);
+      });
     }
 
     var functions = {
@@ -379,6 +374,11 @@
         },
         set: function set(s) {
           this._value = s;
+        }
+      }, {
+        key: "length",
+        get: function get() {
+          return this._value.length;
         }
       }]);
 
