@@ -8,7 +8,6 @@ function modulesPaths() {
         ignore: [
             SRC + '/helper/**/*.js',
             SRC + '/functions.js',
-            SRC + '/type.js',
             SRC + '/index.js',
         ],
     });

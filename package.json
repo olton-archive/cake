@@ -24,7 +24,7 @@
   "module": "es/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "npm run build-universal && npm run build-module",
+    "build": "rimraf -rf dist dist_cjs dist_es && npm run build-universal && npm run build-module",
     "build-universal": "rollup -c config/rollup/dist.umd-min.js && rollup -c config/rollup/dist.umd.js",
     "build-module": "rollup -c config/rollup/module.cjs.all.js && rollup -c config/rollup/module.umd.js && rollup -c config/rollup/module.es.js && rollup -c config/rollup/module.es.all.js",
     "prepare-npm-package": "rm -rf dist_mod && mkdir dist_mod && cp package.json README.md LICENSE.md ./dist_mod && npm run build",
@@ -48,6 +48,7 @@
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.35.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-uglify": "^6.0.4"

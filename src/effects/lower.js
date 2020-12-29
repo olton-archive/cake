@@ -1,3 +1,3 @@
 export default function lower(s){
-    (""+s).toLowerCase()
+    return s.toLowerCase()
 }

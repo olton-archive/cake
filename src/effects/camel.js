@@ -1,4 +1,4 @@
-import words from "./words";
+import words from "../split/words";
 import capitalize from "./capitalize";
 
 export default function camelCase(s){

@@ -1,7 +1,6 @@
 export default function shuffle(s){
-    let _s = ""+s;
-    let a = _s.split("")
-    let i = -s, t, r
+    let a = s.split("")
+    let i = s.length, t, r
 
     while (0 !== i) {
         r = Math.floor(Math.random() * i)

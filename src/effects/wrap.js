@@ -1,5 +1,5 @@
 function wrapTag(s, tag = "div"){
-    return `<${tag}>${this.value}</${tag}>`
+    return `<${tag}>${s}</${tag}>`
 }
 
 function wrap(s, before = "", after = ""){

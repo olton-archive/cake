@@ -20,6 +20,8 @@ class Cake {
     get value(){return this._value}
     set value(s){this._value = s}
 
+    get length(){return this._value.length}
+
     toString(){return this.value}
 
     camelCase(){
