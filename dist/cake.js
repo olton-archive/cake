@@ -124,6 +124,17 @@
       return s.toLowerCase();
     }
 
+    function chars(s) {
+      var ignore = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+      return ("" + s).split("").filter(function (el) {
+        return !ignore.includes(el);
+      });
+    }
+
+    function reverse(s) {
+      return chars(s).reverse().join("");
+    }
+
     function shuffle(s) {
       var a = s.split("");
       var i = s.length,
@@ -183,30 +194,17 @@
       return before + s + after;
     }
 
-    function chars(s) {
-      var ignore = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-      return ("" + s).split("").filter(function (el) {
-        return !ignore.includes(el);
-      });
+    function toStr(val) {
+      var def = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+      if (isNull(val)) return def;
+      if (typeof val === "string") return val;
+      if (Array.isArray(val)) return val.join("");
+      return JSON.stringify(val);
     }
 
-    var functions = {
-      camelCase: camelCase,
-      capitalize: capitalize,
-      chars: chars,
-      dashedName: dashedName,
-      decapitalize: decapitalize,
-      kebab: kebab,
-      lower: lower,
-      shuffle: shuffle,
-      snake: snake,
-      swap: swap,
-      title: title,
-      upper: upper,
-      words: words,
-      wrap: wrap,
-      wrapTag: wrapTag
-    };
+    function count(s) {
+      return toStr(s).length;
+    }
 
     function _classCallCheck(instance, Constructor) {
       if (!(instance instanceof Constructor)) {
@@ -244,6 +242,98 @@
 
       return obj;
     }
+
+    function _toConsumableArray(arr) {
+      return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+    }
+
+    function _arrayWithoutHoles(arr) {
+      if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+    }
+
+    function _iterableToArray(iter) {
+      if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+    }
+
+    function _unsupportedIterableToArray(o, minLen) {
+      if (!o) return;
+      if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+      var n = Object.prototype.toString.call(o).slice(8, -1);
+      if (n === "Object" && o.constructor) n = o.constructor.name;
+      if (n === "Map" || n === "Set") return Array.from(o);
+      if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+    }
+
+    function _arrayLikeToArray(arr, len) {
+      if (len == null || len > arr.length) len = arr.length;
+
+      for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+      return arr2;
+    }
+
+    function _nonIterableSpread() {
+      throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    }
+
+    function unique(a) {
+      var _a = _toConsumableArray(a);
+
+      for (var i = 0; i < _a.length; ++i) {
+        for (var j = i + 1; j < _a.length; ++j) {
+          if (_a[i] === _a[j]) _a.splice(j--, 1);
+        }
+      }
+
+      return _a;
+    }
+
+    function countChars(s, ignore) {
+      return chars(s, ignore).length;
+    }
+    function countUniqueChars(s, ignore) {
+      return unique(chars(s, ignore)).length;
+    }
+
+    function countSubstr(s, sub) {
+      var _s = toStr(s);
+
+      var _sub = toStr(sub);
+
+      return _s === '' || _sub === '' ? 0 : _s.split(_sub).length - 1;
+    }
+
+    function countWords(s, pattern, flags) {
+      return words(s, pattern, flags).length;
+    }
+    function countUniqueWords(s, pattern, flags) {
+      return unique(words(s, pattern, flags)).length;
+    }
+
+    var functions = {
+      camelCase: camelCase,
+      capitalize: capitalize,
+      chars: chars,
+      count: count,
+      countChars: countChars,
+      countUniqueChars: countUniqueChars,
+      countSubstr: countSubstr,
+      countWords: countWords,
+      countUniqueWords: countUniqueWords,
+      dashedName: dashedName,
+      decapitalize: decapitalize,
+      kebab: kebab,
+      lower: lower,
+      reverse: reverse,
+      shuffle: shuffle,
+      snake: snake,
+      swap: swap,
+      title: title,
+      upper: upper,
+      words: words,
+      wrap: wrap,
+      wrapTag: wrapTag
+    };
 
     var _Symbol$toPrimitive, _Symbol$toStringTag;
     _Symbol$toPrimitive = Symbol.toPrimitive;
@@ -292,6 +382,36 @@
           return functions.chars(this.value);
         }
       }, {
+        key: "count",
+        value: function count() {
+          return functions.count(this.value);
+        }
+      }, {
+        key: "countChars",
+        value: function countChars(ignore) {
+          return functions.countChars(this.value, ignore);
+        }
+      }, {
+        key: "countUniqueChars",
+        value: function countUniqueChars(ignore) {
+          return functions.countUniqueChars(this.value, ignore);
+        }
+      }, {
+        key: "countSubstr",
+        value: function countSubstr(sub) {
+          return functions.countSubstr(this.value, sub);
+        }
+      }, {
+        key: "countWords",
+        value: function countWords(pattern, flags) {
+          return functions.countWords(this.value, pattern, flags);
+        }
+      }, {
+        key: "countUniqueWords",
+        value: function countUniqueWords(pattern, flags) {
+          return functions.countUniqueWords(this.value, pattern, flags);
+        }
+      }, {
         key: "dashedName",
         value: function dashedName() {
           this.value = functions.dashedName(this.value);
@@ -313,6 +433,12 @@
         key: "lower",
         value: function lower() {
           this.value = functions.lower(this.value);
+          return this;
+        }
+      }, {
+        key: "reverse",
+        value: function reverse() {
+          this.value = functions.reverse(this.value);
           return this;
         }
       }, {
