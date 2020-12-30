@@ -17,6 +17,8 @@ import count from "./count/count";
 import {countChars, countUniqueChars} from "./count/count_chars";
 import countSubstr from "./count/count_substrings";
 import {countWords, countUniqueWords} from "./count/count_words";
+import escapeHtml from "./escape/escape_html";
+import unescapeHtml from "./escape/unescape_html";
 
 export default {
     camelCase,
@@ -40,6 +42,8 @@ export default {
     upper,
     words,
     wrap,
-    wrapTag
+    wrapTag,
+    escapeHtml,
+    unescapeHtml,
 }
 

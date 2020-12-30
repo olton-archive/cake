@@ -24,6 +24,18 @@ class Cake {
 
     toString(){return this.value}
 
+    /* escape */
+    escapeHtml(){
+        this.value = f.escapeHtml(this.value)
+        return this
+    }
+
+    unescapeHtml(){
+        this.value = f.unescapeHtml(this.value)
+        return this
+    }
+    /* end of escape */
+
     camelCase(){
         this.value = f.camelCase(this.value)
         return this
