@@ -1,7 +1,5 @@
 coverage
 lib
-dist_cjs
-dist_es
 .idea
 .nyc_output
 node_modules

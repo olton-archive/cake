@@ -38,6 +38,30 @@ class Cake {
         return f.chars(this.value)
     }
 
+    count(){
+        return f.count(this.value)
+    }
+
+    countChars(ignore){
+        return f.countChars(this.value, ignore)
+    }
+
+    countUniqueChars(ignore){
+        return f.countUniqueChars(this.value, ignore)
+    }
+
+    countSubstr(sub){
+        return f.countSubstr(this.value, sub)
+    }
+
+    countWords(pattern, flags){
+        return f.countWords(this.value, pattern, flags)
+    }
+
+    countUniqueWords(pattern, flags){
+        return f.countUniqueWords(this.value, pattern, flags)
+    }
+
     dashedName(){
         this.value = f.dashedName(this.value)
         return this
@@ -55,6 +79,11 @@ class Cake {
 
     lower(){
         this.value = f.lower(this.value)
+        return this
+    }
+
+    reverse(){
+        this.value = f.reverse(this.value);
         return this
     }
 
