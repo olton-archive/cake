@@ -85,6 +85,14 @@
       return isNull(val) ? def : val;
     }
 
+    function toStr(val) {
+      var def = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+      if (isNull(val)) return def;
+      if (typeof val === "string") return val;
+      if (Array.isArray(val)) return val.join("");
+      return JSON.stringify(val);
+    }
+
     function words(s, pattern, flags) {
       var regexp;
 
@@ -96,53 +104,60 @@
         regexp = new RegExp(pattern, nvl(flags, ''));
       }
 
-      return nvl(s.match(regexp), []);
+      return nvl(toStr(s).match(regexp), []);
     }
 
     function capitalize(s) {
-      return ("" + s).substr(0, 1).toUpperCase() + ("" + s).substr(1).toLowerCase();
+      var _s = toStr(s);
+
+      return _s.substr(0, 1).toUpperCase() + _s.substr(1).toLowerCase();
     }
 
     function camelCase(s) {
-      return words("" + s).map(function (el, i) {
-        return i === 0 ? el.toLowerCase() : capitalize(el).toString();
+      return words(toStr(s)).map(function (el, i) {
+        return i === 0 ? el.toLowerCase() : capitalize(el);
       }).join("");
     }
 
     function dashedName(s) {
-      return words("" + s).map(function (el) {
+      return words(toStr(s)).map(function (el) {
         return el.toLowerCase();
       }).join("-");
     }
 
     function decapitalize(s) {
-      return ("" + s).substr(0, 1).toLowerCase() + ("" + s).substr(1);
+      var _s = toStr(s);
+
+      return _s.substr(0, 1).toLowerCase() + _s.substr(1);
     }
 
     function kebab(s) {
-      return words(s).map(function (el) {
+      return words(toStr(s)).map(function (el) {
         return el.toLowerCase();
       }).join("-");
     }
 
     function lower(s) {
-      return s.toLowerCase();
+      return toStr(s).toLowerCase();
     }
 
     function chars(s) {
       var ignore = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-      return ("" + s).split("").filter(function (el) {
+      return toStr(s).split("").filter(function (el) {
         return !ignore.includes(el);
       });
     }
 
     function reverse(s) {
-      return chars(s).reverse().join("");
+      return chars(toStr(s)).reverse().join("");
     }
 
     function shuffle(s) {
-      var a = s.split("");
-      var i = s.length,
+      var _s = toStr(s);
+
+      var a = _s.split("");
+
+      var i = _s.length,
           t,
           r;
 
@@ -158,7 +173,7 @@
     }
 
     function snake(s) {
-      return words(s).map(function (el) {
+      return words(toStr(s)).map(function (el) {
         return el.toLowerCase();
       }).join("_");
     }
@@ -172,39 +187,33 @@
     };
 
     function swap(s) {
-      return s.split("").reduce(_swap, '');
+      return toStr(s).split("").reduce(_swap, '');
     }
 
     function title(s, noSplit) {
-      var regexp = REGEXP_EXTENDED_ASCII.test(s) ? REGEXP_LATIN_WORD : REGEXP_WORD;
+      var _s = toStr(s);
+
+      var regexp = REGEXP_EXTENDED_ASCII.test(_s) ? REGEXP_LATIN_WORD : REGEXP_WORD;
       var noSplitArray = Array.isArray(noSplit) ? noSplit : isNull(noSplit) ? [] : noSplit.split();
       return s.replace(regexp, function (w, i) {
-        var isNoSplit = i && noSplitArray.includes(s[i - 1]);
+        var isNoSplit = i && noSplitArray.includes(_s[i - 1]);
         return isNoSplit ? lower(w) : capitalize(w);
       });
     }
 
     function upper(s) {
-      return ("" + s).toUpperCase();
+      return toStr(s).toUpperCase();
     }
 
     function wrapTag(s) {
       var tag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "div";
-      return "<".concat(tag, ">").concat(s, "</").concat(tag, ">");
+      return "<".concat(tag, ">").concat(toStr(s), "</").concat(tag, ">");
     }
 
     function wrap(s) {
       var before = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
       var after = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
-      return before + s + after;
-    }
-
-    function toStr(val) {
-      var def = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-      if (isNull(val)) return def;
-      if (typeof val === "string") return val;
-      if (Array.isArray(val)) return val.join("");
-      return JSON.stringify(val);
+      return before + toStr(s) + after;
     }
 
     function count(s) {
