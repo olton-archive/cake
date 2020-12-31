@@ -1,4 +1,4 @@
-import snake from "../../src/effects/snake";
+import snake from "../../src/effects/snake_case";
 
 test("Snake effect test", () => {
     expect(snake("learning to fly")).toBe("learning_to_fly")

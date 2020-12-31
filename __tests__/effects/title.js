@@ -1,4 +1,4 @@
-import title from "../../src/effects/title";
+import title from "../../src/effects/title_case";
 
 test("Title test", () => {
     expect(title("learning to fly")).toBe("Learning To Fly")

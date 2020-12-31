@@ -1,4 +1,4 @@
-import dashedname from "../../src/effects/dashedname";
+import dashedname from "../../src/effects/dashed_name";
 
 test('Dashed name test', () => {
     expect(dashedname("camelCase")).toEqual("camel-case")

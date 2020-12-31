@@ -1,3 +1,5 @@
+import toStr from "../helpers/string/to_string";
+
 export default function chars(s, ignore = []){
-    return (""+s).split("").filter( (el) => !ignore.includes(el) );
+    return (toStr(s)).split("").filter( (el) => !ignore.includes(el) );
 }

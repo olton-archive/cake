@@ -1,6 +1,7 @@
 import {isNull} from "../helpers/null/is_null";
 import {REGEXP_EXTENDED_ASCII, REGEXP_LATIN_WORD, REGEXP_WORD} from "../helpers/regexp/regexp";
 import {nvl} from "../helpers/null/nvl";
+import toStr from "../helpers/string/to_string";
 
 export default function words(s, pattern, flags){
     let regexp;
@@ -13,5 +14,5 @@ export default function words(s, pattern, flags){
         regexp = new RegExp(pattern, nvl(flags, ''))
     }
 
-    return nvl(s.match(regexp), []);
+    return nvl(toStr(s).match(regexp), []);
 }

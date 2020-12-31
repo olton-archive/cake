@@ -1,3 +1,5 @@
+import toStr from "../helpers/string/to_string";
+
 const _swap = function(swapped, char){
     const lc = char.toLowerCase()
     const uc = char.toUpperCase()
@@ -6,5 +8,5 @@ const _swap = function(swapped, char){
 }
 
 export default function swap(s){
-    return s.split("").reduce(_swap, '')
+    return toStr(s).split("").reduce(_swap, '')
 }

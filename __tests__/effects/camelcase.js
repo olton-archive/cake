@@ -1,4 +1,4 @@
-import camelcase from "../../src/effects/camel";
+import camelcase from "../../src/effects/camel_case";
 
 test('Test camelCase', () => {
     expect(camelcase("camel-case")).toEqual('camelCase')

@@ -1,6 +1,9 @@
+import toStr from "../helpers/string/to_string";
+
 export default function shuffle(s){
-    let a = s.split("")
-    let i = s.length, t, r
+    let _s = toStr(s)
+    let a = _s.split("")
+    let i = _s.length, t, r
 
     while (0 !== i) {
         r = Math.floor(Math.random() * i)

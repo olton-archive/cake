@@ -7,4 +7,6 @@ test("Count substr test", () => {
     expect(countSubstr("", "")).toBe(0)
     expect(countSubstr("", "123")).toBe(0)
     expect(countSubstr("bad boys, bad boys whatcha gonna do?", "boys")).toBe(2)
+    expect(countSubstr("boys, bad boys whatcha gonna do? boys", "boys")).toBe(3)
 })
+
