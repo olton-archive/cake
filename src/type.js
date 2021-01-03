@@ -215,6 +215,42 @@ class Cake {
         this.value = f.rtrim(this.value, ws)
         return this
     }
+
+    endsWith(end, pos){
+        return f.endsWith(this.value, end, pos)
+    }
+
+    startWith(start, pos){
+        return f.startWith(this.value, start, pos)
+    }
+
+    isAlpha(){
+        return f.isAlpha(this.value)
+    }
+
+    isAlphaDigit(){
+        return f.isAlphaDigit(this.value)
+    }
+
+    isDigit(){
+        return f.isDigit(this.value)
+    }
+
+    isBlank(){
+        return f.isBlank(this.value)
+    }
+
+    isEmpty(){
+        return f.isEmpty(this.value)
+    }
+
+    isLower(){
+        return f.isLower(this.value)
+    }
+
+    isUpper(){
+        return f.isUpper(this.value)
+    }
 }
 
 const cake = function(s){

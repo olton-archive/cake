@@ -67,6 +67,11 @@
 
     var REGEXP_TRIM_RIGHT = new RegExp('[' + whitespace + ']+$');
     /**
+     * Regular expression to match digit characters
+     */
+
+    var REGEXP_DIGIT = new RegExp('^' + digit + '+$');
+    /**
      * Regular expression to match HTML special characters.
      */
 
@@ -85,6 +90,16 @@
      */
 
     var REGEXP_LATIN_WORD = /[A-Z\xC0-\xD6\xD8-\xDE]?[a-z\xDF-\xF6\xF8-\xFF]+|[A-Z\xC0-\xD6\xD8-\xDE]+(?![a-z\xDF-\xF6\xF8-\xFF])|\d+/g;
+    /**
+     * Regular expression to match alpha characters
+     */
+
+    var REGEXP_ALPHA = new RegExp('^(?:[' + lowerCaseLetter + upperCaseLetter + '][' + diacriticalMark + ']*)+$');
+    /**
+     * Regular expression to match alpha and digit characters
+     */
+
+    var REGEXP_ALPHA_DIGIT = new RegExp('^((?:[' + lowerCaseLetter + upperCaseLetter + '][' + diacriticalMark + ']*)|[' + digit + '])+$');
     /**
      * Regular expression to match Extended ASCII characters, i.e. the first 255
      */
@@ -647,6 +662,50 @@
       }, '');
     }
 
+    function endsWith(s, end, pos) {
+      var _s = toStr(s);
+
+      return _s.endsWith(end, pos);
+    }
+
+    function isAlpha(s) {
+      return REGEXP_ALPHA.test(toStr(s));
+    }
+
+    function isAlphaDigit(s) {
+      return REGEXP_ALPHA_DIGIT.test(toStr(s));
+    }
+
+    function isAlphaDigit$1(s) {
+      return REGEXP_DIGIT.test(toStr(s));
+    }
+
+    function isBlank(s) {
+      return trim(s).length === 0;
+    }
+
+    function isEmpty(s) {
+      return toStr(s).length === 0;
+    }
+
+    function isLower(s) {
+      var _s = toStr(s);
+
+      return _s.toLowerCase() === _s;
+    }
+
+    function isUpper(s) {
+      var _s = toStr(s);
+
+      return _s.toUpperCase() === _s;
+    }
+
+    function startWith(s, start, pos) {
+      var _s = toStr(s);
+
+      return _s.startsWith(start, pos);
+    }
+
     var functions = {
       camelCase: camelCase,
       capitalize: capitalize,
@@ -687,7 +746,16 @@
       includes: includes,
       trim: trim,
       ltrim: ltrim,
-      rtrim: rtrim
+      rtrim: rtrim,
+      endsWith: endsWith,
+      isAlpha: isAlpha,
+      isAlphaDigit: isAlphaDigit,
+      isDigit: isAlphaDigit$1,
+      isBlank: isBlank,
+      isEmpty: isEmpty,
+      isLower: isLower,
+      isUpper: isUpper,
+      startWith: startWith
     };
 
     var _Symbol$toPrimitive, _Symbol$toStringTag;
@@ -952,6 +1020,51 @@
         value: function rtrim(ws) {
           this.value = functions.rtrim(this.value, ws);
           return this;
+        }
+      }, {
+        key: "endsWith",
+        value: function endsWith(end, pos) {
+          return functions.endsWith(this.value, end, pos);
+        }
+      }, {
+        key: "startWith",
+        value: function startWith(start, pos) {
+          return functions.startWith(this.value, start, pos);
+        }
+      }, {
+        key: "isAlpha",
+        value: function isAlpha() {
+          return functions.isAlpha(this.value);
+        }
+      }, {
+        key: "isAlphaDigit",
+        value: function isAlphaDigit() {
+          return functions.isAlphaDigit(this.value);
+        }
+      }, {
+        key: "isDigit",
+        value: function isDigit() {
+          return functions.isDigit(this.value);
+        }
+      }, {
+        key: "isBlank",
+        value: function isBlank() {
+          return functions.isBlank(this.value);
+        }
+      }, {
+        key: "isEmpty",
+        value: function isEmpty() {
+          return functions.isEmpty(this.value);
+        }
+      }, {
+        key: "isLower",
+        value: function isLower() {
+          return functions.isLower(this.value);
+        }
+      }, {
+        key: "isUpper",
+        value: function isUpper() {
+          return functions.isUpper(this.value);
         }
       }, {
         key: _Symbol$toStringTag,

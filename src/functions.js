@@ -31,6 +31,15 @@ import { pad, lpad, rpad } from "./effects/pad"
 import insert from "./effects/insert"
 import includes from "./check/includes"
 import {trim, rtrim, ltrim} from "./effects/trim"
+import endsWith from "./check/ends_with"
+import isAlpha from "./check/is_alpha"
+import isAlphaDigit from "./check/is_alpha_digit"
+import isDigit from "./check/is_digit"
+import isBlank from "./check/is_blank"
+import isEmpty from "./check/is_empty"
+import isLower from "./check/is_lower"
+import isUpper from "./check/is_upper"
+import startWith from "./check/start_with"
 
 export default {
     camelCase,
@@ -72,6 +81,15 @@ export default {
     includes,
     trim,
     ltrim,
-    rtrim
+    rtrim,
+    endsWith,
+    isAlpha,
+    isAlphaDigit,
+    isDigit,
+    isBlank,
+    isEmpty,
+    isLower,
+    isUpper,
+    startWith
 }
 
