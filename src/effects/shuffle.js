@@ -1,17 +1,8 @@
 import toStr from "../helpers/string/to_string";
+import shuffleArray from "../helpers/array/shuffle";
 
 export default function shuffle(s){
     let _s = toStr(s)
-    let a = _s.split("")
-    let i = _s.length, t, r
 
-    while (0 !== i) {
-        r = Math.floor(Math.random() * i)
-        i -= 1
-        t = a[i]
-        a[i] = a[r]
-        a[r] = t
-    }
-
-    return a.join("")
+    return shuffleArray(_s.split("")).join("")
 }

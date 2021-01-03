@@ -19,6 +19,12 @@ import countSubstr from "./count/count_substrings";
 import {countWords, countUniqueWords} from "./count/count_words";
 import escapeHtml from "./escape/escape_html";
 import unescapeHtml from "./escape/unescape_html";
+import unique from "./effects/unique";
+import substr from "./chop/substr";
+import first from "./chop/first";
+import last from "./chop/last";
+import truncate from "./chop/truncate";
+import slice from "./chop/slice"
 
 export default {
     camelCase,
@@ -45,5 +51,11 @@ export default {
     wrapTag,
     escapeHtml,
     unescapeHtml,
+    unique,
+    substr,
+    first,
+    last,
+    truncate,
+    slice
 }
 

@@ -152,74 +152,6 @@
       return chars(toStr(s)).reverse().join("");
     }
 
-    function shuffle(s) {
-      var _s = toStr(s);
-
-      var a = _s.split("");
-
-      var i = _s.length,
-          t,
-          r;
-
-      while (0 !== i) {
-        r = Math.floor(Math.random() * i);
-        i -= 1;
-        t = a[i];
-        a[i] = a[r];
-        a[r] = t;
-      }
-
-      return a.join("");
-    }
-
-    function snake(s) {
-      return words(toStr(s)).map(function (el) {
-        return el.toLowerCase();
-      }).join("_");
-    }
-
-    var _swap = function _swap(swapped, _char) {
-      var lc = _char.toLowerCase();
-
-      var uc = _char.toUpperCase();
-
-      return swapped + (_char === lc ? uc : lc);
-    };
-
-    function swap(s) {
-      return toStr(s).split("").reduce(_swap, '');
-    }
-
-    function title(s, noSplit) {
-      var _s = toStr(s);
-
-      var regexp = REGEXP_EXTENDED_ASCII.test(_s) ? REGEXP_LATIN_WORD : REGEXP_WORD;
-      var noSplitArray = Array.isArray(noSplit) ? noSplit : isNull(noSplit) ? [] : noSplit.split();
-      return s.replace(regexp, function (w, i) {
-        var isNoSplit = i && noSplitArray.includes(_s[i - 1]);
-        return isNoSplit ? lower(w) : capitalize(w);
-      });
-    }
-
-    function upper(s) {
-      return toStr(s).toUpperCase();
-    }
-
-    function wrapTag(s) {
-      var tag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "div";
-      return "<".concat(tag, ">").concat(toStr(s), "</").concat(tag, ">");
-    }
-
-    function wrap(s) {
-      var before = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-      var after = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
-      return before + toStr(s) + after;
-    }
-
-    function count(s) {
-      return toStr(s).length;
-    }
-
     function _classCallCheck(instance, Constructor) {
       if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
@@ -288,6 +220,78 @@
 
     function _nonIterableSpread() {
       throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+    }
+
+    function shuffle(a) {
+      var _a = _toConsumableArray(a);
+
+      var i = _a.length,
+          t,
+          r;
+
+      while (0 !== i) {
+        r = Math.floor(Math.random() * i);
+        i -= 1;
+        t = _a[i];
+        _a[i] = _a[r];
+        _a[r] = t;
+      }
+
+      return _a;
+    }
+
+    function shuffle$1(s) {
+      var _s = toStr(s);
+
+      return shuffle(_s.split("")).join("");
+    }
+
+    function snake(s) {
+      return words(toStr(s)).map(function (el) {
+        return el.toLowerCase();
+      }).join("_");
+    }
+
+    var _swap = function _swap(swapped, _char) {
+      var lc = _char.toLowerCase();
+
+      var uc = _char.toUpperCase();
+
+      return swapped + (_char === lc ? uc : lc);
+    };
+
+    function swap(s) {
+      return toStr(s).split("").reduce(_swap, '');
+    }
+
+    function title(s, noSplit) {
+      var _s = toStr(s);
+
+      var regexp = REGEXP_EXTENDED_ASCII.test(_s) ? REGEXP_LATIN_WORD : REGEXP_WORD;
+      var noSplitArray = Array.isArray(noSplit) ? noSplit : isNull(noSplit) ? [] : noSplit.split();
+      return s.replace(regexp, function (w, i) {
+        var isNoSplit = i && noSplitArray.includes(_s[i - 1]);
+        return isNoSplit ? lower(w) : capitalize(w);
+      });
+    }
+
+    function upper(s) {
+      return toStr(s).toUpperCase();
+    }
+
+    function wrapTag(s) {
+      var tag = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "div";
+      return "<".concat(tag, ">").concat(toStr(s), "</").concat(tag, ">");
+    }
+
+    function wrap(s) {
+      var before = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+      var after = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+      return before + toStr(s) + after;
+    }
+
+    function count(s) {
+      return toStr(s).length;
     }
 
     function unique(a) {
@@ -359,6 +363,68 @@
       return chars$1.reduce(reduceUnescapedString, toStr(s));
     }
 
+    function unique$1(s, ignore) {
+      return unique(chars(s, ignore)).join("");
+    }
+
+    function substr(s, start, len) {
+      var _s = toStr(s);
+
+      return _s.substr(start, len);
+    }
+
+    function first(s, len) {
+      var _s = toStr(s);
+
+      return _s ? substr(_s, 0, len) : '';
+    }
+
+    function last(s, len) {
+      var _s = toStr(s);
+
+      return _s ? substr(_s, _s.length - len) : '';
+    }
+
+    var MAX_SAFE_INTEGER = 0x1fffffffffffff;
+
+    function clip(val, min) {
+      var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : MAX_SAFE_INTEGER;
+      if (val < min) return min;
+      if (val > max) return max;
+      return val;
+    }
+
+    function toInt(val) {
+      if (val === Infinity) return MAX_SAFE_INTEGER;
+      if (val === -Infinity) return -MAX_SAFE_INTEGER;
+      return ~~val;
+    }
+
+    function truncate(s, len) {
+      var end = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '...';
+
+      var _s = toStr(s);
+
+      var _len = isNull(len) || isNaN(len) ? _s.length : clip(toInt(len), 0, MAX_SAFE_INTEGER);
+
+      return substr(_s, 0, _len) + (_s.length === _len ? '' : end);
+    }
+
+    function slice(s) {
+      var parts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+      var _s = toStr(s);
+
+      var res = [];
+      var len = Math.round(_s.length / parts);
+
+      for (var i = 0; i < parts; i++) {
+        res.push(substr(_s, i * len, len));
+      }
+
+      return res;
+    }
+
     var functions = {
       camelCase: camelCase,
       capitalize: capitalize,
@@ -374,7 +440,7 @@
       kebab: kebab,
       lower: lower,
       reverse: reverse,
-      shuffle: shuffle,
+      shuffle: shuffle$1,
       snake: snake,
       swap: swap,
       title: title,
@@ -383,7 +449,13 @@
       wrap: wrap,
       wrapTag: wrapTag,
       escapeHtml: escapeHtml,
-      unescapeHtml: unescapeHtml
+      unescapeHtml: unescapeHtml,
+      unique: unique$1,
+      substr: substr,
+      first: first,
+      last: last,
+      truncate: truncate,
+      slice: slice
     };
 
     var _Symbol$toPrimitive, _Symbol$toStringTag;
