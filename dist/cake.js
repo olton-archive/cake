@@ -93,6 +93,10 @@
       return JSON.stringify(val);
     }
 
+    /*
+    * Split string to words. You can set specified patter to split
+    * */
+
     function words(s, pattern, flags) {
       var regexp;
 
@@ -141,6 +145,10 @@
       return toStr(s).toLowerCase();
     }
 
+    /*
+    * Split string to chars array with ignores
+    * */
+
     function chars(s) {
       var ignore = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
       return toStr(s).split("").filter(function (el) {
@@ -148,8 +156,8 @@
       });
     }
 
-    function reverse(s) {
-      return chars(toStr(s)).reverse().join("");
+    function reverse(s, ignore) {
+      return chars(toStr(s), ignore).reverse().join("");
     }
 
     function _classCallCheck(instance, Constructor) {
@@ -290,6 +298,10 @@
       return before + toStr(s) + after;
     }
 
+    /*
+    * Get string length
+    * */
+
     function count(s) {
       return toStr(s).length;
     }
@@ -367,17 +379,29 @@
       return unique(chars(s, ignore)).join("");
     }
 
+    /*
+    * Get substring from string.
+    * */
+
     function substr(s, start, len) {
       var _s = toStr(s);
 
       return _s.substr(start, len);
     }
 
+    /*
+    * Get N first chars from string.
+    * */
+
     function first(s, len) {
       var _s = toStr(s);
 
       return _s ? substr(_s, 0, len) : '';
     }
+
+    /*
+    * Get N last chars from string.
+    * */
 
     function last(s, len) {
       var _s = toStr(s);
@@ -400,6 +424,10 @@
       return ~~val;
     }
 
+    /*
+    * Truncates `subject` to a new `length` with specified ending.
+    * */
+
     function truncate(s, len) {
       var end = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '...';
 
@@ -409,6 +437,10 @@
 
       return substr(_s, 0, _len) + (_s.length === _len ? '' : end);
     }
+
+    /*
+    * Slice string to N parts.
+    * */
 
     function slice(s) {
       var parts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
@@ -423,6 +455,117 @@
       }
 
       return res;
+    }
+
+    /*
+    * Truncates `subject` to a new `length` and does not break the words with specified ending.
+    * */
+
+    function prune(s, len) {
+      var end = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+
+      var _s = toStr(s);
+
+      var _len = isNull(len) || isNaN(len) ? _s.length : clip(toInt(len), 0, MAX_SAFE_INTEGER);
+
+      var _truncatedLen = 0;
+      var pattern = REGEXP_EXTENDED_ASCII.test(_s) ? REGEXP_LATIN_WORD : REGEXP_WORD;
+
+      _s.replace(pattern, function (word, offset) {
+        var wordLength = offset + word.length;
+
+        if (wordLength <= _len - end.length) {
+          _truncatedLen = wordLength;
+        }
+      });
+
+      return _s.substr(0, _truncatedLen) + end;
+    }
+
+    function repeat(s, times) {
+      var _s = toStr(s);
+
+      var _times = isNull(times) || isNaN(times) ? _s.length : clip(toInt(times), 0, MAX_SAFE_INTEGER);
+
+      var _origin = _s;
+
+      if (times === 0) {
+        return "";
+      }
+
+      for (var i = 0; i < _times - 1; i++) {
+        _s += _origin;
+      }
+
+      return _s;
+    }
+
+    function padBuilder(pad, len) {
+      var padLength = pad.length;
+      var length = len - padLength;
+      return repeat(pad, length + 1).substr(0, len);
+    }
+
+    function pad(s, len) {
+      var pad = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';
+
+      var _s = toStr(s);
+
+      var _len = isNull(len) || isNaN(len) ? _s.length : clip(toInt(len), 0, MAX_SAFE_INTEGER);
+
+      var _padLen = pad.length;
+
+      var _paddingLen = _len - _s.length;
+
+      var _sideLen = toInt(_paddingLen / 2); //?
+
+
+      var _remainingLen = _paddingLen % 2; //?
+
+
+      if (_paddingLen <= 0 || _padLen === 0) {
+        return _s;
+      }
+
+      return padBuilder(pad, _sideLen) + _s + padBuilder(pad, _sideLen + _remainingLen); //?
+    }
+    function lpad(s, len) {
+      var pad = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';
+
+      var _s = toStr(s);
+
+      var _len = isNull(len) || isNaN(len) ? _s.length : clip(toInt(len), 0, MAX_SAFE_INTEGER);
+
+      var _padLen = pad.length;
+
+      var _paddingLen = _len - _s.length;
+
+      var _sideLen = _paddingLen;
+
+      if (_paddingLen <= 0 || _padLen === 0) {
+        return _s;
+      }
+
+      return padBuilder(pad, _sideLen) + _s;
+    }
+    function rpad(s, len) {
+      var pad = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';
+
+      var _s = toStr(s);
+
+      var _len = isNull(len) || isNaN(len) ? _s.length : clip(toInt(len), 0, MAX_SAFE_INTEGER);
+
+      var _padLen = pad.length;
+
+      var _paddingLen = _len - _s.length;
+
+      var _sideLen = _paddingLen;
+
+      if (_paddingLen <= 0 || _padLen === 0) {
+        return _s;
+      }
+
+      return _s + padBuilder(pad, _sideLen);
     }
 
     var functions = {
@@ -455,7 +598,12 @@
       first: first,
       last: last,
       truncate: truncate,
-      slice: slice
+      slice: slice,
+      prune: prune,
+      repeat: repeat,
+      pad: pad,
+      lpad: lpad,
+      rpad: rpad
     };
 
     var _Symbol$toPrimitive, _Symbol$toStringTag;
@@ -625,6 +773,71 @@
         key: "wrapTag",
         value: function wrapTag(t) {
           this.value = functions.wrapTag(this.value, t);
+          return this;
+        }
+      }, {
+        key: "pad",
+        value: function pad(len, _pad) {
+          this.value = functions.pad(this.value, len, _pad);
+          return this;
+        }
+      }, {
+        key: "lpad",
+        value: function lpad(len, pad) {
+          this.value = functions.lpad(this.value, len, pad);
+          return this;
+        }
+      }, {
+        key: "rpad",
+        value: function rpad(len, pad) {
+          this.value = functions.rpad(this.value, len, pad);
+          return this;
+        }
+      }, {
+        key: "repeat",
+        value: function repeat(times) {
+          this.value = functions.repeat(this.value, times);
+          return this;
+        }
+      }, {
+        key: "prune",
+        value: function prune(len, end) {
+          this.value = functions.prune(this.value, len, end);
+          return this;
+        }
+      }, {
+        key: "slice",
+        value: function slice(parts) {
+          return functions.slice(this.value, parts);
+        }
+      }, {
+        key: "truncate",
+        value: function truncate(len, end) {
+          this.value = functions.truncate(this.value, len, end);
+          return this;
+        }
+      }, {
+        key: "last",
+        value: function last(len) {
+          this.value = functions.last(this.value, len);
+          return this;
+        }
+      }, {
+        key: "first",
+        value: function first(len) {
+          this.value = functions.first(this.value, len);
+          return this;
+        }
+      }, {
+        key: "substr",
+        value: function substr(start, len) {
+          this.value = functions.substr(this.value, start, len);
+          return this;
+        }
+      }, {
+        key: "unique",
+        value: function unique(ignore) {
+          this.value = functions.unique(this.value, ignore);
           return this;
         }
       }, {

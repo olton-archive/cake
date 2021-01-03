@@ -1,4 +1,4 @@
-import slice from "../../src/chop/slice";
+import slice from "../../src/split/slice";
 
 test("Slice test", () => {
   expect(slice("camel-case", 2)).toEqual(["camel", "-case"])

@@ -1,6 +1,9 @@
 import toStr from "../helpers/string/to_string";
-import substr from "./substr";
+import substr from "../effects/substr";
 
+/*
+* Slice string to N parts.
+* */
 export default function slice(s, parts = 1){
   let _s = toStr(s)
   let res = []

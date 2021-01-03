@@ -3,6 +3,9 @@ import {REGEXP_EXTENDED_ASCII, REGEXP_LATIN_WORD, REGEXP_WORD} from "../helpers/
 import {nvl} from "../helpers/null/nvl";
 import toStr from "../helpers/string/to_string";
 
+/*
+* Split string to words. You can set specified patter to split
+* */
 export default function words(s, pattern, flags){
     let regexp;
 

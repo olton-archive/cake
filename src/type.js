@@ -137,6 +137,60 @@ class Cake {
         this.value = f.wrapTag(this.value, t)
         return this
     }
+
+    pad(len, pad){
+        this.value = f.pad(this.value, len, pad)
+        return this
+    }
+
+    lpad(len, pad){
+        this.value = f.lpad(this.value, len, pad)
+        return this
+    }
+
+    rpad(len, pad){
+        this.value = f.rpad(this.value, len, pad)
+        return this
+    }
+
+    repeat(times){
+        this.value = f.repeat(this.value, times)
+        return this
+    }
+
+    prune(len, end){
+        this.value = f.prune(this.value, len, end)
+        return this
+    }
+
+    slice(parts){
+        return f.slice(this.value, parts)
+    }
+
+    truncate(len, end){
+        this.value = f.truncate(this.value, len, end)
+        return this
+    }
+
+    last(len){
+        this.value = f.last(this.value, len)
+        return this
+    }
+
+    first(len){
+        this.value = f.first(this.value, len)
+        return this
+    }
+
+    substr(start, len){
+        this.value = f.substr(this.value, start, len)
+        return this
+    }
+
+    unique(ignore){
+        this.value = f.unique(this.value, ignore)
+        return this
+    }
 }
 
 const cake = function(s){

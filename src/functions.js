@@ -20,11 +20,14 @@ import {countWords, countUniqueWords} from "./count/count_words";
 import escapeHtml from "./escape/escape_html";
 import unescapeHtml from "./escape/unescape_html";
 import unique from "./effects/unique";
-import substr from "./chop/substr";
-import first from "./chop/first";
-import last from "./chop/last";
-import truncate from "./chop/truncate";
-import slice from "./chop/slice"
+import substr from "./effects/substr";
+import first from "./effects/first";
+import last from "./effects/last";
+import truncate from "./effects/truncate";
+import slice from "./split/slice"
+import prune from "./effects/prune";
+import repeat from "./effects/repeat";
+import { pad, lpad, rpad } from "./effects/pad";
 
 export default {
     camelCase,
@@ -56,6 +59,11 @@ export default {
     first,
     last,
     truncate,
-    slice
+    slice,
+    prune,
+    repeat,
+    pad,
+    lpad,
+    rpad
 }
 

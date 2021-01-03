@@ -1,4 +1,4 @@
-import truncate from "../../src/chop/truncate";
+import truncate from "../../src/effects/truncate";
 
 test("Truncate test", () => {
   expect(truncate("camel-case", 5)).toBe("camel...")
