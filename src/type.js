@@ -191,6 +191,30 @@ class Cake {
         this.value = f.unique(this.value, ignore)
         return this
     }
+
+    insert(sbj, pos){
+        this.value = f.insert(this.value, sbj, pos)
+        return this
+    }
+
+    includes(sub){
+        return f.includes(this.value, sub)
+    }
+
+    trim(ws){
+        this.value = f.trim(this.value, ws)
+        return this
+    }
+
+    ltrim(ws){
+        this.value = f.ltrim(this.value, ws)
+        return this
+    }
+
+    rtrim(ws){
+        this.value = f.rtrim(this.value, ws)
+        return this
+    }
 }
 
 const cake = function(s){

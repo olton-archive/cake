@@ -57,6 +57,16 @@
     var upperCaseLetter = "\\x41-\\x5a\\xc0-\\xd6\\xd8-\\xde\\u0100\\u0102\\u0104\\u0106\\u0108\\u010a\\u010c\\u010e\\u0110\\u0112\\u0114\\u0116\\u0118\\u011a\\u011c\\u011e\\u0120\\u0122\\u0124\\u0126\\u0128\\u012a\\u012c\\u012e\\u0130\\u0132\\u0134\\u0136\\u0139\\u013b\\u013d\\u013f\\u0141\\u0143\\u0145\\u0147\\u014a\\u014c\\u014e\\u0150\\u0152\\u0154\\u0156\\u0158\\u015a\\u015c\\u015e\\u0160\\u0162\\u0164\\u0166\\u0168\\u016a\\u016c\\u016e\\u0170\\u0172\\u0174\\u0176\\u0178\\u0179\\u017b\\u017d\\u0181\\u0182\\u0184\\u0186\\u0187\\u0189-\\u018b\\u018e-\\u0191\\u0193\\u0194\\u0196-\\u0198\\u019c\\u019d\\u019f\\u01a0\\u01a2\\u01a4\\u01a6\\u01a7\\u01a9\\u01ac\\u01ae\\u01af\\u01b1-\\u01b3\\u01b5\\u01b7\\u01b8\\u01bc\\u01c4\\u01c5\\u01c7\\u01c8\\u01ca\\u01cb\\u01cd\\u01cf\\u01d1\\u01d3\\u01d5\\u01d7\\u01d9\\u01db\\u01de\\u01e0\\u01e2\\u01e4\\u01e6\\u01e8\\u01ea\\u01ec\\u01ee\\u01f1\\u01f2\\u01f4\\u01f6-\\u01f8\\u01fa\\u01fc\\u01fe\\u0200\\u0202\\u0204\\u0206\\u0208\\u020a\\u020c\\u020e\\u0210\\u0212\\u0214\\u0216\\u0218\\u021a\\u021c\\u021e\\u0220\\u0222\\u0224\\u0226\\u0228\\u022a\\u022c\\u022e\\u0230\\u0232\\u023a\\u023b\\u023d\\u023e\\u0241\\u0243-\\u0246\\u0248\\u024a\\u024c\\u024e";
 
     /**
+     * Regular expression to match whitespaces from the left side
+     */
+
+    var REGEXP_TRIM_LEFT = new RegExp('^[' + whitespace + ']+');
+    /**
+     * Regular expression to match whitespaces from the right side
+     */
+
+    var REGEXP_TRIM_RIGHT = new RegExp('[' + whitespace + ']+$');
+    /**
      * Regular expression to match HTML special characters.
      */
 
@@ -568,6 +578,75 @@
       return _s + padBuilder(pad, _sideLen);
     }
 
+    function insert(s) {
+      var sbj = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      var pos = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+      var _s = toStr(s);
+
+      return _s.substr(0, pos) + sbj + _s.substr(pos);
+    }
+
+    function includes(s, search) {
+      return countSubstr(s, search) > 0;
+    }
+
+    var reduce = Array.prototype.reduce;
+    var reduceRight = Array.prototype.reduceRight;
+    function trim(s, ws) {
+      return ltrim(rtrim(s, ws), ws);
+    }
+    function ltrim(s, ws) {
+      var _s = toStr(s);
+
+      if (isNull(ws)) {
+        return _s.replace(REGEXP_TRIM_LEFT, '');
+      }
+
+      if (ws === '' || _s === '') {
+        return _s;
+      }
+
+      if (typeof ws !== "string") {
+        ws = '';
+      }
+
+      var match = true;
+      return reduce.call(_s, function (trimmed, _char) {
+        if (match && includes(ws, _char)) {
+          return trimmed;
+        }
+
+        match = false;
+        return trimmed + _char;
+      }, '');
+    }
+    function rtrim(s, ws) {
+      var _s = toStr(s);
+
+      if (isNull(ws)) {
+        return _s.replace(REGEXP_TRIM_RIGHT, '');
+      }
+
+      if (ws === '' || _s === '') {
+        return _s;
+      }
+
+      if (typeof ws !== "string") {
+        ws = '';
+      }
+
+      var match = true;
+      return reduceRight.call(_s, function (trimmed, _char2) {
+        if (match && includes(ws, _char2)) {
+          return trimmed;
+        }
+
+        match = false;
+        return _char2 + trimmed;
+      }, '');
+    }
+
     var functions = {
       camelCase: camelCase,
       capitalize: capitalize,
@@ -603,7 +682,12 @@
       repeat: repeat,
       pad: pad,
       lpad: lpad,
-      rpad: rpad
+      rpad: rpad,
+      insert: insert,
+      includes: includes,
+      trim: trim,
+      ltrim: ltrim,
+      rtrim: rtrim
     };
 
     var _Symbol$toPrimitive, _Symbol$toStringTag;
@@ -838,6 +922,35 @@
         key: "unique",
         value: function unique(ignore) {
           this.value = functions.unique(this.value, ignore);
+          return this;
+        }
+      }, {
+        key: "insert",
+        value: function insert(sbj, pos) {
+          this.value = functions.insert(this.value, sbj, pos);
+          return this;
+        }
+      }, {
+        key: "includes",
+        value: function includes(sub) {
+          return functions.includes(this.value, sub);
+        }
+      }, {
+        key: "trim",
+        value: function trim(ws) {
+          this.value = functions.trim(this.value, ws);
+          return this;
+        }
+      }, {
+        key: "ltrim",
+        value: function ltrim(ws) {
+          this.value = functions.ltrim(this.value, ws);
+          return this;
+        }
+      }, {
+        key: "rtrim",
+        value: function rtrim(ws) {
+          this.value = functions.rtrim(this.value, ws);
           return this;
         }
       }, {
