@@ -256,7 +256,7 @@
       throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
     }
 
-    function shuffle(a) {
+    function shuffleArray (a) {
       var _a = _toConsumableArray(a);
 
       var i = _a.length,
@@ -274,10 +274,10 @@
       return _a;
     }
 
-    function shuffle$1(s) {
+    function shuffle(s) {
       var _s = toStr(s);
 
-      return shuffle(_s.split("")).join("");
+      return shuffleArray(_s.split("")).join("");
     }
 
     function snake(s) {
@@ -332,7 +332,7 @@
       return toStr(s).length;
     }
 
-    function unique(a) {
+    function un (a) {
       var _a = _toConsumableArray(a);
 
       for (var i = 0; i < _a.length; ++i) {
@@ -348,7 +348,7 @@
       return chars(s, ignore).length;
     }
     function countUniqueChars(s, ignore) {
-      return unique(chars(s, ignore)).length;
+      return un(chars(s, ignore)).length;
     }
 
     function countSubstr(s, sub) {
@@ -363,7 +363,7 @@
       return words(s, pattern, flags).length;
     }
     function countUniqueWords(s, pattern, flags) {
-      return unique(words(s, pattern, flags)).length;
+      return un(words(s, pattern, flags)).length;
     }
 
     var escapeCharactersMap = {
@@ -401,8 +401,8 @@
       return chars$1.reduce(reduceUnescapedString, toStr(s));
     }
 
-    function unique$1(s, ignore) {
-      return unique(chars(s, ignore)).join("");
+    function unique(s, ignore) {
+      return un(chars(s, ignore)).join("");
     }
 
     /*
@@ -739,7 +739,7 @@
       kebab: kebab,
       lower: lower,
       reverse: reverse,
-      shuffle: shuffle$1,
+      shuffle: shuffle,
       snake: snake,
       swap: swap,
       title: title,
@@ -749,7 +749,7 @@
       wrapTag: wrapTag,
       escapeHtml: escapeHtml,
       unescapeHtml: unescapeHtml,
-      unique: unique$1,
+      unique: unique,
       substr: substr,
       first: first,
       last: last,

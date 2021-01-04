@@ -1,4 +1,4 @@
-export default function shuffle(a){
+export default function (a){
   let _a = [...a];
   let i = _a.length, t, r
 

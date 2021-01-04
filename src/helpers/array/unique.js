@@ -1,4 +1,4 @@
-export default function unique(a){
+export default function (a){
     let _a = [...a];
     for (let i = 0; i < _a.length; ++i) {
         for (let j = i + 1; j < _a.length; ++j) {

@@ -18,16 +18,12 @@
 for modern browsers and Node with **comfortable modern API**.
 
 * 🕒 Quick and accurate
-* 💪 Immutable/mutable modes
-* 🔥 Chainable
-* 📦 Xkb mini library (core), Xkb - full
+* 💪 Type, Static methods, Standalone functions
+* 🔥 Chainable (when using as Type)
+* 📦 5kb mini library (gzip), 35kb - full
 * 👫 All browsers, Electron, NodeJS supported
 
 ## Getting started
-
-### Documentation
-
-You can find for more details, API, and other docs on [DOCUMENTATION](DOCUMENTATION.md).
 
 ### Installation
 In HTML
@@ -42,10 +38,15 @@ npm install @olton/cake --save
 ### API
 
 It's easy to use String APIs to parse, validate, manipulate, and display strings.
+You can find for more details, API, and other docs on [DOCUMENTATION](DOCUMENTATION.md).
+
+## Bug reporting
+For bug reports, documentation typos or feature requests feel free to create an issue.
+Please make sure that the same problem wasn't reported already.
 
 ## Sponsors
 No sponsor yet :(
 
 ## License
 
-Datetime is licensed under a [MIT license](LICENSE).
+Cake is licensed under a [MIT license](LICENSE).
