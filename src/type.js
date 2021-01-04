@@ -251,6 +251,16 @@ class Cake {
     isUpper(){
         return f.isUpper(this.value)
     }
+
+    stripTagsAll(){
+        this.value = f.stripTagsAll(this.value)
+        return this
+    }
+
+    stripTags(allowed){
+        this.value = f.stripTags(this.value, allowed)
+        return this
+    }
 }
 
 const cake = function(s){

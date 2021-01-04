@@ -76,6 +76,7 @@
      */
 
     var REGEXP_HTML_SPECIAL_CHARACTERS = /[<>&"'`]/g;
+    var REGEXP_TAGS = /(<([^>]+)>)/ig;
     /**
      * Regular expression to match Unicode words
      */
@@ -706,6 +707,23 @@
       return _s.startsWith(start, pos);
     }
 
+    function stripTagsAll(s) {
+      var _s = toStr(s);
+
+      return _s.replace(REGEXP_TAGS, '');
+    }
+    function stripTags(s) {
+      var allowed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+      var _s = toStr(s);
+
+      var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
+      return _s.replace(tags, function ($0, $1) {
+
+        return allowed.includes($1) ? $0 : '';
+      });
+    }
+
     var functions = {
       camelCase: camelCase,
       capitalize: capitalize,
@@ -755,7 +773,9 @@
       isEmpty: isEmpty,
       isLower: isLower,
       isUpper: isUpper,
-      startWith: startWith
+      startWith: startWith,
+      stripTags: stripTags,
+      stripTagsAll: stripTagsAll
     };
 
     var _Symbol$toPrimitive, _Symbol$toStringTag;
@@ -1065,6 +1085,18 @@
         key: "isUpper",
         value: function isUpper() {
           return functions.isUpper(this.value);
+        }
+      }, {
+        key: "stripTagsAll",
+        value: function stripTagsAll() {
+          this.value = functions.stripTagsAll(this.value);
+          return this;
+        }
+      }, {
+        key: "stripTags",
+        value: function stripTags(allowed) {
+          this.value = functions.stripTags(this.value, allowed);
+          return this;
         }
       }, {
         key: _Symbol$toStringTag,

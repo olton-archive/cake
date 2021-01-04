@@ -40,6 +40,7 @@ import isEmpty from "./check/is_empty"
 import isLower from "./check/is_lower"
 import isUpper from "./check/is_upper"
 import startWith from "./check/start_with"
+import {stripTags, stripTagsAll} from "./effects/strip_tags";
 
 export default {
     camelCase,
@@ -90,6 +91,8 @@ export default {
     isEmpty,
     isLower,
     isUpper,
-    startWith
+    startWith,
+    stripTags,
+    stripTagsAll
 }
 

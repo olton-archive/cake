@@ -2,7 +2,7 @@ module.exports = {
     verbose: true,
     modulePaths: ['<rootDir>/src/'],
     collectCoverageFrom: ['src/**/*.js'],
-    testMatch: ['<rootDir>/__tests__/*/*.js'],
+    testMatch: ['<rootDir>/__tests__/**/*.js'],
     testURL: 'http://localhost',
     testPathIgnorePatterns: ['node_modules', '.cache'],
     transformIgnorePatterns: [
