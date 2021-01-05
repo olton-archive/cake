@@ -50,3 +50,10 @@ No sponsor yet :(
 ## License
 
 Cake is licensed under a [MIT license](LICENSE).
+
+## Credits
+
+During the development of Cake, the best practices were used:
+
+* voca by [Dmitry Pavluhin](https://github.com/panzerdp/voca)
+* sprintf by [Alexandru Mărășteanu](https://github.com/alexei/sprintf.js)
