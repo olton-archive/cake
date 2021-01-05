@@ -555,9 +555,8 @@
 
       return padBuilder(pad, _sideLen) + _s + padBuilder(pad, _sideLen + _remainingLen); //?
     }
-    function lpad(s, len) {
-      var pad = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';
 
+    var _pad = function _pad(s, len, pad, left) {
       var _s = toStr(s);
 
       var _len = isNull(len) || isNaN(len) ? _s.length : clip(toInt(len), 0, MAX_SAFE_INTEGER);
@@ -572,26 +571,17 @@
         return _s;
       }
 
-      return padBuilder(pad, _sideLen) + _s;
+      var pads = padBuilder(pad, _sideLen);
+      return left ? pads + _s : _s + pads;
+    };
+
+    function lpad(s, len) {
+      var pad = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';
+      return _pad(s, len, pad, true);
     }
     function rpad(s, len) {
       var pad = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ' ';
-
-      var _s = toStr(s);
-
-      var _len = isNull(len) || isNaN(len) ? _s.length : clip(toInt(len), 0, MAX_SAFE_INTEGER);
-
-      var _padLen = pad.length;
-
-      var _paddingLen = _len - _s.length;
-
-      var _sideLen = _paddingLen;
-
-      if (_paddingLen <= 0 || _padLen === 0) {
-        return _s;
-      }
-
-      return _s + padBuilder(pad, _sideLen);
+      return _pad(s, len, pad, false);
     }
 
     function insert(s) {

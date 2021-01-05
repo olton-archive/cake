@@ -42,6 +42,7 @@ import isUpper from "./check/is_upper"
 import startWith from "./check/start_with"
 import {stripTags, stripTagsAll} from "./effects/strip_tags";
 
+
 export default {
     camelCase,
     capitalize,
