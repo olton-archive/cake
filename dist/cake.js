@@ -421,6 +421,10 @@
       return un(chars(s, ignore)).join("");
     }
 
+    function uniqueWords(s, pattern, flags) {
+      return un(words(s, pattern, flags)).join("");
+    }
+
     /*
     * Get substring from string.
     * */
@@ -994,6 +998,7 @@
       escapeHtml: escapeHtml,
       unescapeHtml: unescapeHtml,
       unique: unique,
+      uniqueWords: uniqueWords,
       substr: substr,
       first: first,
       last: last,
@@ -1255,8 +1260,12 @@
       }, {
         key: "unique",
         value: function unique(ignore) {
-          this.value = functions.unique(this.value, ignore);
-          return this;
+          return functions.unique(this.value, ignore);
+        }
+      }, {
+        key: "uniqueWords",
+        value: function uniqueWords(pattern, flags) {
+          return functions.uniqueWords(this.value, pattern, flags);
         }
       }, {
         key: "insert",
@@ -1343,6 +1352,16 @@
         value: function stripTags(allowed) {
           this.value = functions.stripTags(this.value, allowed);
           return this;
+        }
+      }, {
+        key: "sprintf",
+        value: function sprintf(args) {
+          return functions.sprintf(this.value, args);
+        }
+      }, {
+        key: "vsprintf",
+        value: function vsprintf(args) {
+          return functions.vsprintf(this.value, args);
         }
       }, {
         key: _Symbol$toStringTag,

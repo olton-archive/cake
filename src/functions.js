@@ -20,6 +20,7 @@ import {countWords, countUniqueWords} from "./count/count_words"
 import escapeHtml from "./escape/escape_html"
 import unescapeHtml from "./escape/unescape_html"
 import unique from "./effects/unique"
+import uniqueWords from "./effects/uniqueWords"
 import substr from "./effects/substr"
 import first from "./effects/first"
 import last from "./effects/last"
@@ -69,6 +70,7 @@ export default {
     escapeHtml,
     unescapeHtml,
     unique,
+    uniqueWords,
     substr,
     first,
     last,

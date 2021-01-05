@@ -188,8 +188,11 @@ class Cake {
     }
 
     unique(ignore){
-        this.value = f.unique(this.value, ignore)
-        return this
+        return f.unique(this.value, ignore)
+    }
+
+    uniqueWords(pattern, flags){
+        return f.uniqueWords(this.value, pattern, flags)
     }
 
     insert(sbj, pos){
@@ -260,6 +263,14 @@ class Cake {
     stripTags(allowed){
         this.value = f.stripTags(this.value, allowed)
         return this
+    }
+
+    sprintf(args){
+        return f.sprintf(this.value, args)
+    }
+
+    vsprintf(args){
+        return f.vsprintf(this.value, args)
     }
 }
 
