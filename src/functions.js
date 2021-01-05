@@ -40,8 +40,8 @@ import isEmpty from "./check/is_empty"
 import isLower from "./check/is_lower"
 import isUpper from "./check/is_upper"
 import startWith from "./check/start_with"
-import {stripTags, stripTagsAll} from "./effects/strip_tags";
-
+import {stripTags, stripTagsAll} from "./effects/strip_tags"
+import {sprintf, vsprintf} from "./format/sprintf"
 
 export default {
     camelCase,
@@ -94,6 +94,8 @@ export default {
     isUpper,
     startWith,
     stripTags,
-    stripTagsAll
+    stripTagsAll,
+    sprintf,
+    vsprintf
 }
 
