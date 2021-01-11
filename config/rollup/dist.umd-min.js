@@ -5,7 +5,7 @@ import { uglify } from 'rollup-plugin-uglify';
 import { DIST_UNIVERSAL, SRC } from '../const';
 
 export default {
-    input: `${SRC}/index.js`,
+    input: `${SRC}/browser.js`,
     plugins: [
         babel(),
         uglify({
@@ -16,8 +16,8 @@ export default {
     ],
     output: {
         file: `${DIST_UNIVERSAL}/cake.min.js`,
-        format: 'umd',
-        name: 'cake',
+        format: 'iife',
+        name: '__cake',
         sourcemap: true,
         banner: banner,
     },

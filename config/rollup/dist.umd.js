@@ -4,12 +4,16 @@ import banner from '../banner';
 import { DIST_UNIVERSAL, SRC } from '../const';
 
 export default {
-    input: `${SRC}/index.js`,
-    plugins: [babel()],
+    input: `${SRC}/browser.js`,
+    plugins: [
+        babel({
+            exclude: 'node_modules/**'
+        })
+    ],
     output: {
         file: `${DIST_UNIVERSAL}/cake.js`,
-        format: 'umd',
-        name: 'cake',
+        format: 'iife',
+        name: '__cake',
         sourcemap: false,
         banner: banner,
     },

@@ -6,11 +6,8 @@
  * Released under the MIT license
  */
 
-(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-    typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.cake = {}));
-}(this, (function (exports) { 'use strict';
+(function () {
+    'use strict';
 
     var isNull = function isNull(val) {
       return val === undefined || val === null;
@@ -1390,11 +1387,27 @@
       return new Cake(s);
     };
 
+    var __global = null;
+
+    function getGlobalObject() {
+      if (__global !== null) {
+        return __global;
+      }
+
+      if ((typeof global === "undefined" ? "undefined" : _typeof(global)) === 'object' && global.Object === Object) {
+        __global = global;
+      } else if ((typeof self === "undefined" ? "undefined" : _typeof(self)) === 'object' && self.Object === Object) {
+        __global = self;
+      } else {
+        __global = new Function('return this')();
+      }
+
+      return __global;
+    }
+
     Object.assign(Cake, functions);
+    var global$1 = getGlobalObject();
+    global$1.cake = cake;
+    global$1.Cake = Cake;
 
-    exports.cake = cake;
-    exports.default = Cake;
-
-    Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
+}());
